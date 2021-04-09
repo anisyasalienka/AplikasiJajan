@@ -1,0 +1,16 @@
+D:\Anisya Mahira Salienka\PBO\AplikasiJajan\bin\Debug\net5.0\AplikasiJajan.exe
+D:\Anisya Mahira Salienka\PBO\AplikasiJajan\bin\Debug\net5.0\AplikasiJajan.deps.json
+D:\Anisya Mahira Salienka\PBO\AplikasiJajan\bin\Debug\net5.0\AplikasiJajan.runtimeconfig.json
+D:\Anisya Mahira Salienka\PBO\AplikasiJajan\bin\Debug\net5.0\AplikasiJajan.runtimeconfig.dev.json
+D:\Anisya Mahira Salienka\PBO\AplikasiJajan\bin\Debug\net5.0\AplikasiJajan.dll
+D:\Anisya Mahira Salienka\PBO\AplikasiJajan\bin\Debug\net5.0\ref\AplikasiJajan.dll
+D:\Anisya Mahira Salienka\PBO\AplikasiJajan\bin\Debug\net5.0\AplikasiJajan.pdb
+D:\Anisya Mahira Salienka\PBO\AplikasiJajan\obj\Debug\net5.0\AplikasiJajan.csprojAssemblyReference.cache
+D:\Anisya Mahira Salienka\PBO\AplikasiJajan\obj\Debug\net5.0\AplikasiJajan.GeneratedMSBuildEditorConfig.editorconfig
+D:\Anisya Mahira Salienka\PBO\AplikasiJajan\obj\Debug\net5.0\AplikasiJajan.AssemblyInfoInputs.cache
+D:\Anisya Mahira Salienka\PBO\AplikasiJajan\obj\Debug\net5.0\AplikasiJajan.AssemblyInfo.cs
+D:\Anisya Mahira Salienka\PBO\AplikasiJajan\obj\Debug\net5.0\AplikasiJajan.csproj.CoreCompileInputs.cache
+D:\Anisya Mahira Salienka\PBO\AplikasiJajan\obj\Debug\net5.0\AplikasiJajan.dll
+D:\Anisya Mahira Salienka\PBO\AplikasiJajan\obj\Debug\net5.0\ref\AplikasiJajan.dll
+D:\Anisya Mahira Salienka\PBO\AplikasiJajan\obj\Debug\net5.0\AplikasiJajan.pdb
+D:\Anisya Mahira Salienka\PBO\AplikasiJajan\obj\Debug\net5.0\AplikasiJajan.genruntimeconfig.cache
