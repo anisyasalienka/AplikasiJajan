@@ -9,7 +9,6 @@ namespace AplikasiJajan
     {
         public Flavor flavor;
         public int price { get; set; }
-
         public string name
         {
             get { return this.flavor.ToString(); }

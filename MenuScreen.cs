@@ -1,30 +1,84 @@
 using System;
 using System.Collections.Generic;
+using MySql.Data.MySqlClient;
 
 
 namespace AplikasiJajan
 {
     class MenuScreen
     {
+        // public void ShowLogin()
+        // {
+        //     Login login = new Login();
+        //     Console.WriteLine("-Selamat Datang di Boba Ordering-");
+        //     Console.WriteLine("---------------Login-------------");
+        //     Console.WriteLine("Masukkan Username :");
+        //     login.Username = Console.ReadLine();
+        //     Console.WriteLine("Masukkan Password :");
+        //     login.Password = Console.ReadLine();
+
+        //     bool verify = login.Verification();
+        //     if(verify == true)
+        //     {
+        //        Console.WriteLine("Berhasil");
+        //        MenuScreen menu = new MenuScreen();
+        //        menu.Excecute2();
+        //     }
+        //     else
+        //     {
+        //        MenuScreen menu1 = new MenuScreen();
+        //        menu1.ShowLogin();
+        //     }
+        // }
         public static void ShowMenu1()
         {
-                Console.WriteLine(" Selamat Datang... ");
                 Console.WriteLine("1. Tambah pesanan Customer");
                 Console.WriteLine("2. Tampilkan seluruh pesanan Customer");
                 Console.WriteLine("3. Tampilkan pesanan yang sedang dipersiapkan");
                 Console.WriteLine("4. Kurangi pesanan yang sudah selesai");
-                Console.WriteLine("5. Exit");
-                Console.Write("Enter your option:");
+                Console.WriteLine("5. Log Out");
+                Console.Write("Masukkan pilihan anda:");
         }
 
         public static void ShowMenu2()
         {
-            Console.WriteLine(" --------------------------------List Menu JajanBoba-------------------------------- ");
-            Console.WriteLine("|         Big Size          |       Regular Size        |         Small Size        |");
-            Console.WriteLine("| 1. Milktea with Pearl     | 4. Milktea with Pearl     | 7. Milktea with Pearl     |");
-            Console.WriteLine("| 2. Thaitea with Pudding   | 5. Thaitea with Pudding   | 8. Thaitea with Pudding   |");
-            Console.WriteLine("| 3. Matcha with Grass Jelly| 6. Matcha with Grass Jelly| 9. Matcha with Grass Jelly|");
-            Console.WriteLine("\n Masukkan pesanan Customer dengan memasukkan angka : ");
+            Connect conn = new Connect();
+            Console.WriteLine("Connect to MySql DB. \n");
+            using(conn.Connection)
+            {
+                try
+                {
+                    conn.Connection.Open();
+                    System.Console.WriteLine("Connection is " + conn.Connection.State.ToString()+ Environment.NewLine);
+
+                    MySqlCommand command = conn.Connection.CreateCommand();
+                    command.CommandText = System.Data.CommandType.Text.ToString();
+                    command.CommandText = "Select * from tb_menu";
+
+                    MySqlDataReader reader = command.ExecuteReader();
+
+                    var data = "No\tNama Minuman\t\tUkuran";
+
+                    if(reader.HasRows)
+                    {
+                        while(reader.Read())
+                        {
+                            data +=  Environment.NewLine + reader.GetInt32(0) + " |\t" + reader.GetString(1) + "\t| " 
+                            + reader.GetString(2) ;                         
+                            }
+                    }
+                    Console.WriteLine(data);
+
+                    conn.Connection.Close();
+                    System.Console.WriteLine("Connection is " + conn.Connection.State.ToString() + Environment.NewLine);
+                }
+                catch(MySql.Data.MySqlClient.MySqlException ex)
+                {
+                    System.Console.WriteLine("Error!" + ex.Message.ToString());
+                }
+
+            }
+
         }
         public string Excecute1()
         {
@@ -123,11 +177,11 @@ namespace AplikasiJajan
                         var custOrder = new Customer();
                         Console.Write("Masukan nama Customer:");
                         custOrder.Name = Console.ReadLine();
-
                         custOrder.DrinkName = Excecute1();
                         if(custOrder.DrinkName == "0")
                         {
                             Console.WriteLine("Gagal memasukkan pesanan Customer.");
+
                         }
                         else
                         {

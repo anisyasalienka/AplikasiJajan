@@ -7,8 +7,6 @@ namespace AplikasiJajan
     {
         public string name { get; set; }
         public int price { get; set; }
-    
-
         public Topping()
         {
             this.price = 0;

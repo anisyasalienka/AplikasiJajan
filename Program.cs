@@ -5,11 +5,14 @@ namespace AplikasiJajan
 {
     class Program
     {
+
         static void Main(string[] args)
         {
-            MenuScreen menu = new MenuScreen();
 
-            menu.Excecute2();
+            
+            Login login  = new Login();
+            login.login();
+            //menu.Excecute2();
 
         }
     }
