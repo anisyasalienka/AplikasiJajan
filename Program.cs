@@ -7,12 +7,10 @@ namespace AplikasiJajan
     {
 
         static void Main(string[] args)
-        {
-
-            
+        {   
+            Console.WriteLine("\tAplikasi JajanBoba");
             Login login  = new Login();
             login.login();
-            //menu.Excecute2();
 
         }
     }

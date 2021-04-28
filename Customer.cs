@@ -6,19 +6,19 @@ namespace AplikasiJajan
 {
     class Customer
     {
-        private static int StartingId = 1;
+        private static int id = 1;
         public int Id { get; private set; }
         public string Name { get; set; }
-        public string DrinkName { get; set; }
+        public string DrinkOrder { get; set; }
 
         public Customer()
         {
-            this.Id = GetId();
+            this.Id = InputId();
         }
 
-        private static int GetId()
+        private static int InputId()
         {
-            return StartingId++;
+            return id++;
         }
     }
 }

@@ -17,7 +17,7 @@ namespace AplikasiJajan
             this.drinkFlavor = new List<DrinkFlavor>();
         }
 
-        public int CalculatePrice()
+        public int CalculateDrinkPrice()
         {
           int totalPrice = this.price;
 
@@ -44,36 +44,36 @@ namespace AplikasiJajan
 
         public string GetDrink()
         {
-           string infDrink = string.Empty; 
+           string infoDrink = string.Empty; 
            foreach(DrinkFlavor df in this.drinkFlavor)
            {
-               infDrink += df.Info();
+               infoDrink += df.Info();
            }
-           return infDrink;
+           return infoDrink;
         }
 
         public string GetTopping()
         {
-            string infTopping =string.Empty;
+            string infoTopping =string.Empty;
             foreach(Topping df in this.topping)
            {
-               infTopping += df.Info();
+               infoTopping += df.Info();
            }
-           return infTopping;
+           return infoTopping;
         }
 
-       public string Info()
+       public string OrderInfo()
        {
-           string info = "Drink Order\n";
-           info += "Item\t\tPrice\n";
+           string info = "\tNota Pesanan\n";
+           info += "Rincian\t\tHarga\n";
            info += $"{this.ToString()}\t{this.price}\n";
 
            info += this.GetDrink();
 
            info += this.GetTopping();
-           info += "-------------------------------\n";
+           info += "------------------------------ +\n";
 
-           info += $"total\t{this.CalculatePrice()}\n";
+           info += $"total\t{this.CalculateDrinkPrice()}\n";
            return info;
        }
 

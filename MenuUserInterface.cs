@@ -5,51 +5,27 @@ using MySql.Data.MySqlClient;
 
 namespace AplikasiJajan
 {
-    class MenuScreen
+    class MenuUserInterface
     {
-        // public void ShowLogin()
-        // {
-        //     Login login = new Login();
-        //     Console.WriteLine("-Selamat Datang di Boba Ordering-");
-        //     Console.WriteLine("---------------Login-------------");
-        //     Console.WriteLine("Masukkan Username :");
-        //     login.Username = Console.ReadLine();
-        //     Console.WriteLine("Masukkan Password :");
-        //     login.Password = Console.ReadLine();
-
-        //     bool verify = login.Verification();
-        //     if(verify == true)
-        //     {
-        //        Console.WriteLine("Berhasil");
-        //        MenuScreen menu = new MenuScreen();
-        //        menu.Excecute2();
-        //     }
-        //     else
-        //     {
-        //        MenuScreen menu1 = new MenuScreen();
-        //        menu1.ShowLogin();
-        //     }
-        // }
-        public static void ShowMenu1()
+        public static void MainMenu()
         {
-                Console.WriteLine("1. Tambah pesanan Customer");
-                Console.WriteLine("2. Tampilkan seluruh pesanan Customer");
+                Console.WriteLine("\tMain Menu");
+                Console.WriteLine("1. Tambah pesanan pelanggan");
+                Console.WriteLine("2. Tampilkan seluruh list pesanan");
                 Console.WriteLine("3. Tampilkan pesanan yang sedang dipersiapkan");
-                Console.WriteLine("4. Kurangi pesanan yang sudah selesai");
+                Console.WriteLine("4. Kurangi pesanan yang telah disajikan");
                 Console.WriteLine("5. Log Out");
-                Console.Write("Masukkan pilihan anda:");
+                Console.Write("Masukkan pilihan :");
         }
 
-        public static void ShowMenu2()
+        public static void DrinkMenu()
         {
             Connect conn = new Connect();
-            Console.WriteLine("Connect to MySql DB. \n");
             using(conn.Connection)
             {
                 try
                 {
                     conn.Connection.Open();
-                    System.Console.WriteLine("Connection is " + conn.Connection.State.ToString()+ Environment.NewLine);
 
                     MySqlCommand command = conn.Connection.CreateCommand();
                     command.CommandText = System.Data.CommandType.Text.ToString();
@@ -57,7 +33,7 @@ namespace AplikasiJajan
 
                     MySqlDataReader reader = command.ExecuteReader();
 
-                    var data = "No\tNama Minuman\t\tUkuran";
+                    var data = "\tMenu Minuman\nNo\tNama Minuman\t\tUkuran";
 
                     if(reader.HasRows)
                     {
@@ -65,12 +41,12 @@ namespace AplikasiJajan
                         {
                             data +=  Environment.NewLine + reader.GetInt32(0) + " |\t" + reader.GetString(1) + "\t| " 
                             + reader.GetString(2) ;                         
-                            }
+                        }
                     }
                     Console.WriteLine(data);
 
                     conn.Connection.Close();
-                    System.Console.WriteLine("Connection is " + conn.Connection.State.ToString() + Environment.NewLine);
+                    Console.WriteLine("Masukkan minuman pilihan Customer : ");
                 }
                 catch(MySql.Data.MySqlClient.MySqlException ex)
                 {
@@ -80,155 +56,155 @@ namespace AplikasiJajan
             }
 
         }
-        public string Excecute1()
+        public string OptionExe()
         {
-            string drinkName = "";
-            ShowMenu2();
-            var opt1 = Console.ReadLine();
+            string drinkOrder = "";
+            DrinkMenu();
+            var option = Console.ReadLine();
     
-            switch(opt1)
+            switch(option)
             {
                 case "1":
                     BigSize cup1 = new BigSize();
                     cup1.AddDrink(new DrinkFlavor(Flavor.Milktea));
                     cup1.AddTopping(new Pearl());
-                    Console.WriteLine(cup1.Info());
-                    drinkName = "Milktea with Pearl";
+                    Console.WriteLine(cup1.OrderInfo());
+                    drinkOrder = "Milktea with Pearl";
                     break;
                 case "2":
                     BigSize cup2 = new BigSize();
                     cup2.AddDrink(new DrinkFlavor(Flavor.Thaitea));
                     cup2.AddTopping(new Pudding());
-                    Console.WriteLine(cup2.Info());
-                    drinkName = "Thaitea with Pudding";
+                    Console.WriteLine(cup2.OrderInfo());
+                    drinkOrder = "Thaitea with Pudding";
                     break;              
                 case "3":
                     BigSize cup3 = new BigSize();
                     cup3.AddDrink(new DrinkFlavor(Flavor.Matcha));
                     cup3.AddTopping(new GrassJelly());
-                    Console.WriteLine(cup3.Info());
-                    drinkName = "Matcha with Grass Jelly";
+                    Console.WriteLine(cup3.OrderInfo());
+                    drinkOrder = "Matcha with Grass Jelly";
                     break;
                 case "4":
                     RegularSize cup4 = new RegularSize();
                     cup4.AddDrink(new DrinkFlavor(Flavor.Milktea));
                     cup4.AddTopping(new Pearl());
-                    Console.WriteLine(cup4.Info());
-                    drinkName = "Milktea with Pearl";
+                    Console.WriteLine(cup4.OrderInfo());
+                    drinkOrder = "Milktea with Pearl";
                     break;
                 case "5":
                     RegularSize cup5 = new RegularSize();
                     cup5.AddDrink(new DrinkFlavor(Flavor.Thaitea));
                     cup5.AddTopping(new Pudding());
-                    Console.WriteLine(cup5.Info());
-                    drinkName = "Thaitea with Pudding";
+                    Console.WriteLine(cup5.OrderInfo());
+                    drinkOrder = "Thaitea with Pudding";
                     break;
                 case "6":
                     RegularSize cup6 = new RegularSize();
                     cup6.AddDrink(new DrinkFlavor(Flavor.Matcha));
                     cup6.AddTopping(new GrassJelly());
-                    Console.WriteLine(cup6.Info());
-                    drinkName = "Matcha with Grass Jelly";                    
+                    Console.WriteLine(cup6.OrderInfo());
+                    drinkOrder = "Matcha with Grass Jelly";                    
                     break;
 
                 case "7":
                     SmallSize cup7 = new SmallSize();
                     cup7.AddDrink(new DrinkFlavor(Flavor.Milktea));
                     cup7.AddTopping(new Pearl());
-                    Console.WriteLine(cup7.Info());
-                    drinkName = "Milktea with Pearl";
+                    Console.WriteLine(cup7.OrderInfo());
+                    drinkOrder = "Milktea with Pearl";
                     break;
 
                 case "8":
                     SmallSize cup8 = new SmallSize();
                     cup8.AddDrink(new DrinkFlavor(Flavor.Thaitea));
                     cup8.AddTopping(new Pudding());
-                    Console.WriteLine(cup8.Info());
-                    drinkName = "Thaitea with Pudding";                    
+                    Console.WriteLine(cup8.OrderInfo());
+                    drinkOrder = "Thaitea with Pudding";                    
                     break;
                 case "9":
                     SmallSize cup9 = new SmallSize();
                     cup9.AddDrink(new DrinkFlavor(Flavor.Matcha));
                     cup9.AddTopping(new GrassJelly());
-                    Console.WriteLine(cup9.Info());
-                    drinkName = "Matcha with Grass Jelly";                    
+                    Console.WriteLine(cup9.OrderInfo());
+                    drinkOrder = "Matcha with Grass Jelly";                    
                     break;
                 default:
-                    Console.WriteLine("Invalid Option");
-                    drinkName = "0";
+                    Console.WriteLine("Pilihan tidak tersedia");
+                    drinkOrder = "0";
                     break;
 
             }
-            return drinkName;
+            return drinkOrder;
         }
-        public void Excecute2()
+        public void OptionExe2()
         {
-            var queueCustomer = new Queue<Customer>();
+            var qCustomer = new Queue<Customer>();
             
             while(true)
             {
-                ShowMenu1();
+                MainMenu();
 
-                var opt = Console.ReadLine();
+                var option2 = Console.ReadLine();
 
-                switch (opt)
+                switch (option2)
                 {
                     case "1":
-                        var custOrder = new Customer();
-                        Console.Write("Masukan nama Customer:");
-                        custOrder.Name = Console.ReadLine();
-                        custOrder.DrinkName = Excecute1();
-                        if(custOrder.DrinkName == "0")
+                        var customerOrder = new Customer();
+                        Console.Write("Masukan nama pelanggan :");
+                        customerOrder.Name = Console.ReadLine();
+                        customerOrder.DrinkOrder = OptionExe();
+                        if(customerOrder.DrinkOrder == "0")
                         {
-                            Console.WriteLine("Gagal memasukkan pesanan Customer.");
+                            Console.WriteLine("Pesanan gagal ditambahkan");
 
                         }
                         else
                         {
-                            queueCustomer.Enqueue(custOrder);
-                            Console.WriteLine("Pesanan Customer sudah ditambahkan.");
+                            qCustomer.Enqueue(customerOrder);
+                            Console.WriteLine("Pesanan pelanggan berhasil ditambahkan");
                         }
 
                         break;
                     case "2":
-                        if (queueCustomer.Count > 0)
+                        if (qCustomer.Count > 0)
                         {
-                            foreach (var q in queueCustomer)
-                            Console.WriteLine($"{q.Name} memesan {q.DrinkName}. Nomor antrian {q.Id}");
+                            foreach (var q in qCustomer)
+                            Console.WriteLine($"Pesanan minuman {q.DrinkOrder} atas nama {q.Name}, nomor antrian  {q.Id}");
                         }
                         else
                         {
-                            Console.WriteLine("Tidak ada yang memesan.");
+                            Console.WriteLine("Tidak ada pesanan yang masuk");
                         }
                         break;
                     case "3":
-                        if (queueCustomer.Count > 0)
+                        if (qCustomer.Count > 0)
                         {
-                            Console.WriteLine($"Pesanan {queueCustomer.Peek().Name} sedang dipersiapkan.");
+                            Console.WriteLine($"Pesanan {qCustomer.Peek().Name} sedang dipersiapkan sekarang");
                         }
                         else
                         {
-                            Console.WriteLine("Tidak ada yang memesan.");
+                            Console.WriteLine("Tidak ada pesanan yang masuk");
                         }
                         break;
                     case "4":
-                        if (queueCustomer.Count > 0)
+                        if (qCustomer.Count > 0)
                         {
-                            Console.WriteLine($"Pesanan {queueCustomer.Peek().Name} sudah selesai.");
-                            queueCustomer.Dequeue();
+                            Console.WriteLine($"Pesanan {qCustomer.Peek().Name} telah disajikan");
+                            qCustomer.Dequeue();
                         }
                         else
                         {
-                            Console.WriteLine("Tidak ada yang memesan.");
+                            Console.WriteLine("Tidak ada pesanan yang masuk");
                         }
                         break;
                     case "5":
-                        Console.WriteLine("Exiting program now.");
+                        Console.WriteLine("Log Out dari Akun");
                         System.Environment.Exit(1);
 
                         break;
                     default:
-                        Console.WriteLine("Invalid option.");
+                        Console.WriteLine("Pilihan tidak tersedia");
                         break;
                 }          
                 Console.ReadKey();    

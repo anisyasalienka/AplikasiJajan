@@ -16,6 +16,7 @@ namespace AplikasiJajan
             using(conn.Connection)
             {
                 conn.Connection.Open();
+                Console.WriteLine("Lakukan login!");
                 Console.WriteLine("Masukkan Username : ");
                 Username = Console.ReadLine();
                 Console.WriteLine("Masukkan Password : ");
@@ -27,18 +28,20 @@ namespace AplikasiJajan
                 MySqlDataReader check = command.ExecuteReader();
                 if(check.HasRows)
                 {
+                    Console.Clear();
                     Console.WriteLine("Login berhasil");
-                    MenuScreen menu = new MenuScreen();
-                    menu.Excecute2();
+                    conn.Connection.Close();
+                    MenuUserInterface menu = new MenuUserInterface();
+                    menu.OptionExe2();
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("Login gagal");
                     conn.Connection.Close();
                     Login login1 = new Login();
                     login1.login();
                 }
-                conn.Connection.Close();
             }
 
         }
